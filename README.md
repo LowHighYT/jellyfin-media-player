@@ -4,7 +4,7 @@ Desktop client using jellyfin-web with embedded MPV player. Supports Windows, Ma
 and Linux. Media plays within the same window using the jellyfin-web interface unlike
 Jellyfin Desktop. Supports audio passthrough. Based on [Plex Media Player](https://github.com/plexinc/plex-media-player).
 
-![Screenshot of Jellyfin Media Player](https://raw.githubusercontent.com/iwalton3/mpv-shim-misc-docs/master/images/jmp-player-win.png)
+![Screenshot of StromRein Media Player](https://raw.githubusercontent.com/iwalton3/mpv-shim-misc-docs/master/images/jmp-player-win.png)
 
 Downloads:
  - [Windows, Mac, and Linux Releases](https://github.com/jellyfin/jellyfin-media-player/releases)
