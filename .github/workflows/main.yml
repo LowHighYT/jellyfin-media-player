@@ -75,7 +75,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: windows
-        path: ${{ github.workspace }}/build/JellyfinMediaPlayer-*.exe
+        path: ${{ github.workspace }}/build/StromReinMediaPlayer-*.exe
 
   build-win32:
     runs-on: windows-latest
@@ -120,7 +120,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: windows-legacy32
-        path: ${{ github.workspace }}/build/JellyfinMediaPlayer-*.exe
+        path: ${{ github.workspace }}/build/StromReinMediaPlayer-*.exe
 
   build-ubuntu:
     strategy:
