@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
-  <Property Id="ARPCOMMENTS" Value="Jellyfin Media Player for Windows" />
+  <Property Id="ARPCOMMENTS" Value="StromRein Media Player for Windows" />
   <Property Id="ARPCONTACT" Value="Jellyfin" />
   <Property Id="ARPPRODUCTICON" Value="JellyfinMediaPlayerIcon" />
   <Property Id="ARPURLINFOABOUT" Value="$(var.JellyfinWebsiteUrl)" />

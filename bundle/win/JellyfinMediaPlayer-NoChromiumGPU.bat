@@ -1,1 +1,1 @@
-start "" "JellyfinMediaPlayer.exe" "--disable-gpu"
+start "" "StromReinMediaPlayer.exe" "--disable-gpu"

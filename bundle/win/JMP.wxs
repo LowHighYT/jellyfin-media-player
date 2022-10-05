@@ -10,7 +10,7 @@
   <!-- https://michielsioen.be/2017-12-02-wix-bootstrapper-customization/ -->
 
   <?define FirstProductVersion=0.0.0 ?>
-  <?define JellyfinMediaPlayerRegistryKey=Software\Jellyfin\Jellyfin Media Player?>
+  <?define JellyfinMediaPlayerRegistryKey=Software\Jellyfin\StromRein Media Player?>
 
     <!-- To keep things simple, the installer considers each new release
          a major upgrade, in which everything is uninstalled, then reinstalled
@@ -55,7 +55,7 @@
     </Upgrade>
     
     <!-- Running program termination -->
-    <util:CloseApplication Id="JellyfinMediaPlayer" CloseMessage="yes" Target="JellyfinMediaPlayer.exe" ElevatedCloseMessage="yes" RebootPrompt="yes" />
+    <util:CloseApplication Id="JellyfinMediaPlayer" CloseMessage="yes" Target="StromReinMediaPlayer.exe" ElevatedCloseMessage="yes" RebootPrompt="yes" />
 
     <!-- Custom action to Install MediaFoundation on Windows Server -->
     <Property Id="WINDOWSTYPE" Value="Client"/>
@@ -63,7 +63,7 @@
     <CustomAction Id="EnableMediaFoundation" BinaryKey="WixCA" DllEntry="WixQuietExec64" Execute="immediate" Return="ignore" Impersonate="no"/>
 
     <Property Id="AUTOLAUNCH" Value="0"/>
-    <Property Id="WixShellExecTarget" Value="[INSTALLLOCATION]JellyfinMediaPlayer.exe" />
+    <Property Id="WixShellExecTarget" Value="[INSTALLLOCATION]StromReinMediaPlayer.exe" />
     <CustomAction Id="LaunchPMP" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" Return="ignore"/>
 
     <InstallExecuteSequence>
@@ -87,20 +87,20 @@
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="JellyfinStartMenuFolder" Name="Jellyfin Media Player"/>
+        <Directory Id="JellyfinStartMenuFolder" Name="StromRein Media Player"/>
       </Directory>
       <Directory Id="DesktopFolder" Name="Desktop">
-        <Component Id="ApplicationShortcutDesktop" Guid="{b2a1316d-917f-433f-bd87-02ec717c2648}">
+        <Component Id="ApplicationShortcutDesktop" Guid="{b2a1316d-917f-433f-bd87-02ec717c2650}">
             <Condition>ADDDESKTOPSHORTCUT=1</Condition>
             <Shortcut Id="ApplicationDesktopShortcut"
-                Name="Jellyfin Media Player"
-                Description="Desktop client for Jellyfin"
-                Target="[INSTALLLOCATION]JellyfinMediaPlayer.exe"
+                Name="StromRein Media Player"
+                Description="Desktop client for StromRein"
+                Target="[INSTALLLOCATION]StromReinMediaPlayer.exe"
                 WorkingDirectory="INSTALLLOCATION"/>
             <RemoveFolder Id="DesktopFolder" On="uninstall"/>
             <RegistryValue
                 Root="HKCU"
-                Key="Software\Jellyfin\Jellyfin Media Player"
+                Key="Software\Jellyfin\StromRein Media Player"
                 Name="installed"
                 Type="integer"
                 Value="1"
@@ -119,7 +119,7 @@
                   Target="[INSTALLLOCATION]JellyfinMediaPlayer.exe"
                   WorkingDirectory="INSTALLLOCATION" />
                   
-        <RegistryKey Root="HKCU" Key="Software\Jellyfin\Jellyfin Media Player">
+        <RegistryKey Root="HKCU" Key="Software\Jellyfin\StromRein Media Player">
           <RegistryValue Name="InstallFolder" Type="string" Value="[INSTALLLOCATION]" Action="write" KeyPath="no" />
         </RegistryKey>
                           

@@ -11,7 +11,7 @@ class jmpUpdatePlugin {
                 if (url == "SSL_UNAVAILABLE") {
                     // Windows (and possibly macOS) don't ship with SSL in QT......
                     // So we get to do a full request to GitHub here :(
-                    const checkUrl = "https://github.com/jellyfin/jellyfin-media-player/releases/latest";
+                    const checkUrl = "https://github.com/TheLowHigh/stromrein-media-player/releases/latest";
                     url = (await fetch(checkUrl)).url;
                 }
 
@@ -26,7 +26,7 @@ class jmpUpdatePlugin {
                 try {
                     await confirm({
                         title: "Update Available",
-                        text: `Jellyfin Media Player version ${version} is available.`,
+                        text: `StromRein Media Player version ${version} is available.`,
                         cancelText: "Ignore",
                         confirmText: "Download"
                     });

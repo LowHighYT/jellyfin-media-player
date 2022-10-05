@@ -149,7 +149,7 @@ else()
   set(INSTALLER_ARCH_STR windows-x86)
 endif()
 
-wix_create_installer(JellyfinMediaPlayer-${VERSION_STRING}-${INSTALLER_ARCH_STR}.exe
+wix_create_installer(StromReinMediaPlayer-${VERSION_STRING}-${INSTALLER_ARCH_STR}.exe
                      TARGET JellyfinMediaPlayerInstaller
                      WXS_FILES "${PROJECT_SOURCE_DIR}/bundle/win/Bundle.wxs"
                      EXTENSIONS WixUtilExtension WixBalExtension

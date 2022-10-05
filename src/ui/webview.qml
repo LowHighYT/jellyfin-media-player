@@ -8,7 +8,7 @@ import QtQuick.Controls 1.4
 KonvergoWindow
 {
   id: mainWindow
-  title: "Jellyfin Media Player"
+  title: "StromRein Media Player"
   objectName: "mainWindow"
   minimumHeight: windowMinSize.height
   minimumWidth: windowMinSize.width

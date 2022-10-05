@@ -63,7 +63,7 @@ window.NativeShell = {
 
 function getDeviceProfile() {
     return {
-        'Name': 'Jellyfin Media Player',
+        'Name': 'StromRein Media Player',
         'MaxStaticBitrate': 1000000000,
         'MusicStreamingTranscodingBitrate': 1280000,
         'TimelineOffsetSeconds': 5,
@@ -127,7 +127,7 @@ window.NativeShell.AppHost = {
     getDeviceProfile,
     getSyncProfile: getDeviceProfile,
     appName() {
-        return "Jellyfin Media Player";
+        return "StromRein Media Player";
     },
     appVersion() {
         return navigator.userAgent.split(" ")[1];
@@ -165,7 +165,7 @@ async function showSettingsModal() {
 
     const title = document.createElement("h3");
     title.className = "formDialogHeaderTitle";
-    title.textContent = "Jellyfin Media Player Settings";
+    title.textContent = "StromRein Media Player Settings";
     modalHeader.appendChild(title);
     
     const modalContents = document.createElement("div");

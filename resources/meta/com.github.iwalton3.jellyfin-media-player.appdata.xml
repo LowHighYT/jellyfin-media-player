@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>com.github.iwalton3.jellyfin-media-player</id>
-  <name>Jellyfin Media Player</name>
+  <name>StromRein Media Player</name>
   <summary>Desktop client for Jellyfin media server</summary>
   <developer_name>Ian Walton</developer_name>
   <project_license>GPL-2.0</project_license>
