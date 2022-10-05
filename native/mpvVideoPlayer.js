@@ -246,11 +246,44 @@
         /**
          * @private
          */
+        getRelativeIndexByType(mediaStreams, jellyIndex, streamType) {
+            let relIndex = 1;
+            for (const source of mediaStreams) {
+                if (source.Type != streamType || source.IsExternal) {
+                    continue;
+                }
+
+                if (source.Index == jellyIndex) {
+                    return relIndex;
+                }
+
+                relIndex += 1;
+            }
+
+            return null;
+        }
+
+        /**
+         * @private
+         */
+        getStreamByIndex(mediaStreams, jellyIndex) {
+            for (const source of mediaStreams) {
+                if (source.Index == jellyIndex) {
+                    return source;
+                }
+            }
+
+            return null;
+        }
+
+        /**
+         * @private
+         */
         getSubtitleParam() {
             const options = this._currentPlayOptions;
 
             if (this._subtitleTrackIndexToSetOnPlaying != null && this._subtitleTrackIndexToSetOnPlaying >= 0) {
-                const initialSubtitleStream = options.mediaSource.MediaStreams[this._subtitleTrackIndexToSetOnPlaying];
+                const initialSubtitleStream = this.getStreamByIndex(options.mediaSource.MediaStreams, this._subtitleTrackIndexToSetOnPlaying);
                 if (!initialSubtitleStream || initialSubtitleStream.DeliveryMethod === 'Encode') {
                     this._subtitleTrackIndexToSetOnPlaying = -1;
                 } else if (initialSubtitleStream.DeliveryMethod === 'External') {
@@ -262,7 +295,43 @@
                 return '';
             }
 
-            return '#' + this._subtitleTrackIndexToSetOnPlaying;
+            const subtitleRelIndex = this.getRelativeIndexByType(
+                options.mediaSource.MediaStreams,
+                this._subtitleTrackIndexToSetOnPlaying,
+                'Subtitle'
+            );
+
+            return subtitleRelIndex != null
+                ? '#' + subtitleRelIndex
+                : '';
+        }
+
+        /**
+         * @private
+         */
+        getAudioParam() {
+            const options = this._currentPlayOptions;
+
+            if (this._audioTrackIndexToSetOnPlaying != null && this._audioTrackIndexToSetOnPlaying >= 0) {
+                const initialAudioStream = this.getStreamByIndex(options.mediaSource.MediaStreams, this._audioTrackIndexToSetOnPlaying);
+                if (!initialAudioStream) {
+                    return '#1';
+                }
+            }
+
+            if (this._audioTrackIndexToSetOnPlaying == -1 || this._audioTrackIndexToSetOnPlaying == null) {
+                return '#1';
+            }
+
+            const audioRelIndex = this.getRelativeIndexByType(
+                options.mediaSource.MediaStreams,
+                this._audioTrackIndexToSetOnPlaying,
+                'Audio'
+            );
+
+            return audioRelIndex != null
+                ? '#' + audioRelIndex
+                : '#1';
         }
 
         tryGetFramerate(options) {
@@ -300,8 +369,7 @@
                 player.load(val,
                     { startMilliseconds: ms, autoplay: true },
                     streamdata,
-                    (this._audioTrackIndexToSetOnPlaying != null)
-                     ? '#' + this._audioTrackIndexToSetOnPlaying : '#1',
+                    this.getAudioParam(),
                     this.getSubtitleParam(),
                     resolve);
             });
@@ -367,7 +435,7 @@
                 return;
             }
 
-            window.api.player.setAudioStream(index != -1 ? '#' + index : '');
+            window.api.player.setAudioStream(this.getAudioParam());
         }
 
         onEndedInternal() {
@@ -580,6 +648,7 @@
 
     pause() {
         window.api.player.pause();
+        window.api.power.setScreensaverEnabled(true);
     }
 
     // This is a retry after error
@@ -590,6 +659,7 @@
 
     unpause() {
         window.api.player.play();
+        window.api.power.setScreensaverEnabled(false);
     }
 
     paused() {
